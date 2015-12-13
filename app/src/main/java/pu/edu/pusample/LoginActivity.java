@@ -90,7 +90,6 @@ public class LoginActivity extends AppCompatActivity {
         intent.putExtra("username", username);
         intent.putExtra("password", password);
         startActivity(intent);
-        finish();
     }
 
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
