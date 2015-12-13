@@ -2,7 +2,9 @@ package pu.edu.pusample;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,6 +42,17 @@ public class LoginActivity extends AppCompatActivity {
                 startLogin();
             }
         });
+
+        // Auto Login
+        SharedPreferences sharedPref = getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        String savedUsername = sharedPref.getString(getString(R.string.username), null);
+        String savedPassword = sharedPref.getString(getString(R.string.password), null);
+        if (savedUsername != null && savedPassword != null) {
+            mAccountText.setText(savedUsername);
+            mPasswordText.setText(savedPassword);
+            startLogin();
+        }
     }
 
     private void startLogin() {
@@ -77,6 +90,7 @@ public class LoginActivity extends AppCompatActivity {
         intent.putExtra("username", username);
         intent.putExtra("password", password);
         startActivity(intent);
+        finish();
     }
 
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {

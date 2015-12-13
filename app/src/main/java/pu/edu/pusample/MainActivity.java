@@ -1,6 +1,8 @@
 package pu.edu.pusample;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -22,6 +24,17 @@ public class MainActivity extends AppCompatActivity {
 
         mTextView = (TextView) findViewById(R.id.text);
         mTextView.setText("Welcome " + username + "!!!!");
+
+        saveLoginData(username, password);
+    }
+
+    private void saveLoginData(String username, String password) {
+        SharedPreferences sharedPref = getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(getString(R.string.username), username);
+        editor.putString(getString(R.string.password), password);
+        editor.commit();
     }
 
     @Override

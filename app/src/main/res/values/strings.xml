@@ -9,4 +9,5 @@
     <string name="login">LogIn</string>
     <string name="username_hint">username</string>
     <string name="password_hint">password</string>
+    <string name="preference_file_key">login_preference</string>
 </resources>
