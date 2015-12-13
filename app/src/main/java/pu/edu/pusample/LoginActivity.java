@@ -34,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         mPasswordText = (EditText) findViewById(R.id.edit_password);
         mLoginButton = (Button) findViewById(R.id.btn_login);
         mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setCancelable(false);
         mProgressDialog.setMessage("Logging in");
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
